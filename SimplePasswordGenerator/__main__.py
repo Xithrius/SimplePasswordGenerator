@@ -1,5 +1,5 @@
 import tkinter as tk
-from secrets import token_urlsafe
+from secrets import token_urlsafe, randbelow
 import pyperclip
 
 
@@ -16,7 +16,7 @@ class MainWindow(tk.Tk):
         self.char_amount.set(22)
 
         # First section
-        self.l1 = tk.Label(self, text='Password length:')
+        self.l1 = tk.Label(self, text='Maximum Password length:')
         self.l1.grid()
 
         self.e1 = tk.Entry(self, textvariable=self.char_amount)
@@ -44,8 +44,10 @@ class MainWindow(tk.Tk):
 
         self.l2['fg'] = 'green'
         self.l2['text'] = 'Password generated!'
+		
+        password_len = randbelow(self.char_amount.get())
 
-        self.password = token_urlsafe(self.char_amount.get())
+        self.password = token_urlsafe(password_len)
 
     def copy_to_clipboard(self) -> None:
         pyperclip.copy(self.password)
