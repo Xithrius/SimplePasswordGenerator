@@ -29,17 +29,17 @@ class MainWindow(tk.Tk):
         self.b1.grid(row=0, column=2)
 
         # Second section:
-        self.l2.grid(row=1)
         self.l2_style = ttk.Style()
         self.l2_style.configure("L2.TLabel", foreground='red')
         self.l2 = ttk.Label(self, text='No password generated.', style='L2.TLabel')
+        self.l2.grid(row=1, columnspan=3)
 
         # Third section:
         self.b2 = ttk.Button(self,
                             text='Copy to clipboard.',
                             command=lambda: self.copy_to_clipboard(),
                             state='disabled')
-        self.b2.grid(row=2)
+        self.b2.grid(row=2, columnspan=3)
 
     def generate_password(self) -> None:
         self.b2['text'] = 'Copy to clipboard.'
